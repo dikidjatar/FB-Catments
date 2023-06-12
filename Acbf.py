@@ -7,8 +7,6 @@ from rich import print
 from rich.panel import Panel
 from rich.columns import Columns
 from rich.console import Console
-from rich.table import Table
-from rich.text import Text
 
 # Banner
 def banner():
@@ -153,15 +151,15 @@ def cat_text_only(mode):
                }
                response3 = r.post('https://free.facebook.com{}'.format(url_form_post), data=data, cookies={'cookie':cookie})
                if response3.ok == True and response3.status_code == 200:
-                  print(Panel(f'[bold green]{username}', style="bold green", width=20))
-                  print(Panel(f'''[bold green]Comments:
-{kata.format(username)}''', style="bold green", width=55, subtitle="SUCCESS"))
+                  uid = [username, user_id]
+                  console = Console()
+                  result = [Panel(x, style="bold green3", width=30) for x in uid]
+                  console.print(Columns(result))
+                  console.print(Panel(kata.format(username), style="bold green3", title="SUCCESS", width=61))
                   for sleep in range(delay_komentar, 0, -1):
                      time.sleep(1.0);print(f'[bold white]Tunggu [bold green]{sleep} [bold white]detik', end='\r');continue
                else:
-                  print(Panel(f'[bold red]{username}', style="bold red", width=20))
-                  print(Panel(f'''[bold red]Comments:
-      {text_komentar}''', style="bold red", width=55, subtitle="FAILED"))
+                  print(Panel(kata.format(username), style="bold red", title="FAILED"))
             except Exception as e:
                print(Panel(f'[bold italic red]{str(e)}', width=55))
       elif mode == 'group':
@@ -198,11 +196,11 @@ def cat_text_only(mode):
                }
                response3 = r.post('https://free.facebook.com{}'.format(url_form_post), data=data, cookies={'cookie':cookie})
                if response3.ok == True and response3.status_code == 200:
-                  print(Panel(f'[bold green]{group_name}', style="bold green", width=55))
-                  print(Panel(f'''[bold green]Post By: {username}
+                  print(Panel(f'[bold green]{group_name}', style="bold green3", width=55))
+                  print(Panel(f'''[bold green3]Post By: {username}
    
 Comments:
-{text_komentar}''', style="bold green", width=55, subtitle="SUCCESS"))
+{text_komentar}''', style="bold green3", width=55, subtitle="SUCCESS"))
                   for sleep in range(delay_komentar, 0, -1):
                      time.sleep(1.0);print(f'[bold white]Tunggu [bold green]{sleep} [bold white]detik', end='\r');continue
                else:
